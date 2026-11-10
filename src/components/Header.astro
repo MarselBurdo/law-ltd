@@ -1,0 +1,43 @@
+---
+import { navigation, site } from '../data/site';
+import { withBase } from '../lib/paths';
+---
+
+<div class="topline">
+  <div class="container flex items-center justify-between gap-4">
+    <span>{site.city} <span aria-hidden="true">·</span> Консультации онлайн</span>
+    <a href={`mailto:${site.email}`}>{site.email}</a>
+  </div>
+</div>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href={withBase('/')} aria-label="Харви Спектр, главная">
+      <span class="brand-mark" aria-hidden="true">S<span>.</span></span>
+      <span class="brand-text">{site.brand}<small>АДВОКАТСКАЯ ПРАКТИКА</small></span>
+    </a>
+    <nav class="desktop-nav" aria-label="Основная навигация">
+      {navigation.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
+    </nav>
+    <a class="header-phone" href={`tel:${site.phoneHref}`}>{site.phone}<span>Обсудить вашу ситуацию ↗</span></a>
+    <details class="mobile-menu">
+      <summary aria-label="Открыть меню"><span></span><span></span><span></span></summary>
+      <nav aria-label="Мобильная навигация">
+        {navigation.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
+        <a href={`tel:${site.phoneHref}`}>{site.phone}</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<script>
+  const menu = document.querySelector<HTMLDetailsElement>('.mobile-menu');
+  menu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => { menu.open = false; });
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && menu?.open) {
+      menu.open = false;
+      menu.querySelector('summary')?.focus();
+    }
+  });
+</script>

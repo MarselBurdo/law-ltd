@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { withBase } from '../lib/paths';
+---
+
+<BaseLayout noIndex title="Страница не найдена | Харви Спектр" description="Запрошенная страница не найдена. Вернитесь на главную страницу юридической практики Харви Спектра.">
+  <div id="top"></div>
+  <Header />
+  <main id="main" class="container error-page"><p class="eyebrow">ОШИБКА 404</p><h1>Этой страницы<br />нет в деле<span>.</span></h1><p>Возможно, ссылка изменилась. Все направления практики доступны на главной.</p><a class="button button-accent" href={withBase('/')}>На главную <span aria-hidden="true">↗</span></a></main>
+  <Footer />
+</BaseLayout>
