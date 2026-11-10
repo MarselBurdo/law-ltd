@@ -1,0 +1,20 @@
+---
+import { site } from '../data/site';
+import { withBase } from '../lib/paths';
+---
+
+<section id="contacts" class="contacts section-space" style={{ '--contact-image': `url("${withBase('/images/new-york.jpg')}")` }}>
+  <div class="container contacts-grid">
+    <div>
+      <p class="eyebrow light">НАЧНЁМ С РАЗГОВОРА</p>
+      <h2>У вашей ситуации<br />есть <em>решение.</em></h2>
+      <p class="contacts-description">Расскажите, что произошло. Обсудим задачу и договоримся о первой встрече.</p>
+      <a class="button button-accent" href={`mailto:${site.email}`}>Написать адвокату <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="contact-details">
+      <div><span class="contact-label">ТЕЛЕФОН</span><a class="contact-phone" href={`tel:${site.phoneHref}`}>{site.phone}</a></div>
+      <div><span class="contact-label">ЭЛЕКТРОННАЯ ПОЧТА</span><a href={`mailto:${site.email}`}>{site.email}</a></div>
+      <div class="contact-address"><div><span class="contact-label">ОФИС</span><p>{site.city}<br />{site.address}</p></div><div><span class="contact-label">ВРЕМЯ РАБОТЫ</span><p>{site.hours}<br />Встречи по записи</p></div></div>
+    </div>
+  </div>
+</section>

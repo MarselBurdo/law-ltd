@@ -1,0 +1,13 @@
+---
+import { site } from '../data/site';
+import { withBase } from '../lib/paths';
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <a class="footer-brand" href={withBase('/')}>SPECTER<span>.</span></a>
+    <p>© {new Date().getFullYear()} {site.name}</p>
+    {site.isDemo && <p class="demo-note">Демонстрационный сайт. Персонаж и контакты вымышлены.<br />На фотографиях представлены стоковые модели.</p>}
+    <a href="#top">Наверх ↑</a>
+  </div>
+</footer>

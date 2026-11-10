@@ -1,0 +1,79 @@
+---
+import { Image } from 'astro:assets';
+import portrait from '../assets/harvey-specter.jpg';
+import team from '../assets/team.jpg';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Contacts from '../components/Contacts.astro';
+import PracticeAreas from '../components/PracticeAreas';
+import { questions, services } from '../data/site';
+
+const cards = services.map(({ slug, number, title, category, label, description }) => ({ slug, number, title, category, label, description }));
+---
+
+<BaseLayout>
+  <div id="top"></div>
+  <Header />
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="status-dot"></span> ХАРВИ СПЕКТР · АДВОКАТ</p>
+          <h1>Сильная позиция.<br /><span>На вашей<br class="desktop-break" /> стороне.</span></h1>
+          <p class="hero-description">Когда на кону ваш бизнес, имущество или репутация, каждый шаг имеет значение. Помогу разобраться в ситуации и защитить ваши интересы.</p>
+          <div class="hero-actions flex flex-wrap items-center gap-6">
+            <a class="button button-accent" href="#contacts">Обсудить мою ситуацию <span aria-hidden="true">↗</span></a>
+            <a class="text-link" href="#practice">Направления практики <span aria-hidden="true">↓</span></a>
+          </div>
+          <div class="hero-assurance"><span aria-hidden="true">◇</span> Личная работа с адвокатом <span class="assurance-divider" aria-hidden="true"></span> Конфиденциально</div>
+        </div>
+        <div class="hero-visual">
+          <div class="portrait-frame">
+            <Image class="hero-portrait" src={portrait} alt="Мужчина в деловом костюме, стоковый портрет для образа Харви Спектра" widths={[480, 768, 1200]} sizes="(max-width: 640px) calc(100vw - 57px), (max-width: 1400px) 42vw, 530px" format="webp" quality={85} loading="eager" fetchpriority="high" />
+            <div class="portrait-shade"></div>
+            <div class="portrait-name"><span>HARVEY SPECTER</span><small>Личная адвокатская практика</small></div>
+            <span class="portrait-side" aria-hidden="true">STRATEGY. PRECISION. ADVOCACY.</span>
+          </div>
+          <div class="portrait-caption"><span class="caption-line"></span><p>«Сначала понять задачу.<br />Затем выбрать точный ход».</p><span class="signature" aria-hidden="true">H. Specter</span></div>
+          <div class="visual-corner" aria-hidden="true">S.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="principles-strip" aria-label="Принципы работы">
+      <div class="container principles-grid">
+        <div><span class="principle-symbol" aria-hidden="true">01</span><p><strong>Ваша цель в центре</strong><span>Стратегия под конкретную задачу</span></p></div>
+        <div><span class="principle-symbol" aria-hidden="true">02</span><p><strong>Понятные условия</strong><span>Объём работы закреплён в договоре</span></p></div>
+        <div><span class="principle-symbol" aria-hidden="true">03</span><p><strong>Прямой контакт</strong><span>Обсуждаете дело с адвокатом</span></p></div>
+      </div>
+    </section>
+
+    <section id="practice" class="section-space practice-section">
+      <div class="container">
+        <div class="section-heading"><div><p class="eyebrow">НАПРАВЛЕНИЯ ПРАКТИКИ</p><h2>Находим выход.<br /><span>Защищаем интересы.</span></h2></div><p class="section-intro">Помощь бизнесу и частным клиентам в ситуациях, где нужна продуманная правовая позиция.</p></div>
+        <PracticeAreas services={cards} client:visible />
+      </div>
+    </section>
+
+    <section id="about" class="about-section section-space">
+      <div class="container about-grid">
+        <div class="about-photo"><Image src={team} alt="Обсуждение документов за рабочим столом, стоковое фото команды" widths={[480, 768, 1200]} sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 1400px) 43vw, 600px" format="webp" quality={80} loading="lazy" /><div class="photo-label"><span class="status-dot"></span> ОДНА КОМАНДА. ВАШИ ИНТЕРЕСЫ.</div></div>
+        <div class="about-copy"><p class="eyebrow">ЛИЧНЫЙ ПОДХОД К КАЖДОМУ ДЕЛУ</p><h2>Ваше дело.<br /><span>Моя ответственность.</span></h2><p>Я Харви Спектр. Помогаю предпринимателям и частным клиентам решать правовые вопросы, вести переговоры и отстаивать свою позицию в суде.</p><p>Начинаю с разговора и документов. Выясняю, что для вас важно, какие есть ограничения и к какому результату мы стремимся. После этого предлагаю план работы.</p><div class="about-note">Вы знаете, что происходит с вашим делом, какой следующий шаг и зачем он нужен.</div><a class="text-link" href="#approach">Как строится работа <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </section>
+
+    <section id="approach" class="approach-section section-space">
+      <div class="container"><div class="section-heading"><div><p class="eyebrow light">ПОНЯТНЫЙ ПРОЦЕСС</p><h2>От первого разговора<br />к <em>плану действий.</em></h2></div><p class="section-intro">На каждом этапе вы понимаете, что мы делаем и какие решения предстоит принять.</p></div><div class="steps-grid">{[
+        ['01', 'Обсуждаем ситуацию', 'Вы рассказываете о задаче. Уточняем обстоятельства, сроки и желаемый результат.'],
+        ['02', 'Разбираем документы', 'Проверяем материалы, находим сильные стороны позиции и вопросы, требующие внимания.'],
+        ['03', 'Согласуем стратегию', 'Обсуждаем возможные действия, объём сопровождения и условия договора.'],
+        ['04', 'Работаем по плану', 'Готовим документы, ведём переговоры и представляем ваши интересы. Держим вас в курсе.'],
+      ].map(([number, title, text]) => <article class="step"><span class="step-number">{number}</span><h3>{title}</h3><p>{text}</p></article>)}</div></div>
+    </section>
+
+    <section class="faq-section section-space"><div class="container faq-grid"><div><p class="eyebrow">ПЕРЕД ПЕРВОЙ ВСТРЕЧЕЙ</p><h2>Вопросы,<br /><span>которые задают.</span></h2><p class="section-intro">Остались вопросы?<br /><a class="text-link" href="#contacts">Обсудим лично ↗</a></p></div><div class="faq-list">{questions.map(({ question, answer }, index) => <details class="faq-item" open={index === 0}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></div></section>
+    <Contacts />
+  </main>
+  <Footer />
+</BaseLayout>
